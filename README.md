@@ -1,2 +1,2 @@
 # passwordManager
-Local password Manager
+Local password Manager. Just command line... for now :)
