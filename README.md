@@ -10,7 +10,7 @@ An account is made by
 * password
 
 or just by some of them.  
-All data will only be saved on local store in "C:\passwordManager"
+All data will only be saved on local store in "C:\passwordManager".
 
 ## Cryptography
 This program uses SHA256 to store user and password to login in the app.
