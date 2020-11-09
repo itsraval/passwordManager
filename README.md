@@ -34,7 +34,8 @@ When you are adding or modifing an account, the new password will be copied into
 
 # Password Generator
 This will generate a random strong password made by 16 characters.   
-8 of thos will be alphabetic / symbol (ASCII 65:126) and the other 8 of thos will be numeric / symbol (ASCII 33:65).
+* 8 of thos will be alphabetic / symbol (ASCII 65:126) 
+* 8 of thos will be numeric / symbol (ASCII 33:65)  
 
 # Imported Libraries
 * java.io.File;
