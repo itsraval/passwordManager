@@ -99,6 +99,20 @@ public class Main {
     }
 
     /**
+     * Shows the account list without the password and it will be copy to your clipboard
+     */
+    public static void showAccountListClipboard() {
+        for (Account account : cText) {
+            System.out.println(cText.indexOf(account) + " " + account.showSiteUrlUserEmail());  
+        }
+        System.out.print("Account's password to copy: ");
+        int i = scan.nextInt();
+        scan.nextLine();
+        cText.get(i).passwordClipBoard();
+        System.out.println("The password is now copied in your clipboard!");
+    }
+
+    /**
      * Shows the account list
      */
     public static void showAccountCredential() {
@@ -242,7 +256,8 @@ public class Main {
      * @param accountFile required to complete the action
      */
     public static void menu(Login log, File accountFile) {
-        System.out.println("1 - Show Accounts List");
+        System.out.println("0 - Show Accounts List");
+        System.out.println("1 - Show Accounts List and copy password to clipboard");
         System.out.println("2 - Show Accounts List with Credential");
         System.out.println("3 - Add Account");
         System.out.println("4 - Modify account");
@@ -259,9 +274,15 @@ public class Main {
             scan.nextLine();
             System.out.print("\n\n");
             switch (i) {
-                case 1:
+                case 0:
                     inTime(log);
                     showAccountList();
+                    exitOrMenu();
+                    menu(log, accountFile);
+                    break;
+                case 1:
+                    inTime(log);
+                    showAccountListClipboard();
                     exitOrMenu();
                     menu(log, accountFile);
                     break;
