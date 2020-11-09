@@ -29,8 +29,12 @@ This program uses AES to encrypt every stored password.
 * Infos
 
 # Other Featueres
-Pasgen
-copy to clipboard
+When you are adding or modifing an account you can choose to generate a strong password with the integrated "Password Generator".  
+When you are adding or modifing an account, the new password will be copied into your clipboard.
+
+# Password Generator
+This will generate a random strong password made by 16 characters.   
+8 of thos will be alphabetic / symbol (ASCII 65:126) and the other 8 of thos will be numeric / symbol (ASCII 33:65).
 
 # Imported Libraries
 * java.io.File;
