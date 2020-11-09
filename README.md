@@ -1,10 +1,19 @@
 # passwordManager
-Local password Manager. Just command line... for now :)
+Local Password Manager. Just command line interface... for now :)
 
 You can save as many accounts as you want (based on your local storage).
-
+An account is made by
+* site name
+* url
+* user
+* email
+* password
+or just by some of them.
+All data will only be saved on local store in "C:\passwordManager"
 
 # Cryptography
+This program uses SHA256 to store user and password to login in the app.
+This program uses AES to encrypt every stored password.
 * SHA256
 * AES
 
@@ -22,7 +31,7 @@ You can save as many accounts as you want (based on your local storage).
 Pasgen
 copy to clipboard
 
-# Imported libraries
+# Imported Libraries
 * java.io.File;
 * java.io.FileWriter;
 * java.io.IOException;
