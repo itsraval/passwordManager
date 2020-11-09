@@ -229,6 +229,7 @@ public class Main {
      */
     public static void infos() {
         System.out.println("\nThis program is made by Alessandro Ravizzoti.");
+        System.out.println("\nwww.alessandro.ravizzotti.tk");
         System.out.println("Copyright © 2020.");
     }
 
