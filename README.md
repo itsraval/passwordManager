@@ -20,6 +20,7 @@ This program uses AES to encrypt every stored password.
 
 ## Menu
 * Show Accounts List
+* Show Accounts List and copy password to clipboard
 * Show Accounts List with Credential
 * Add Account
 * Modify account
@@ -27,6 +28,9 @@ This program uses AES to encrypt every stored password.
 * Change Login Username
 * Change Login Password
 * Infos
+
+### Show Accounts List
+asad
 
 ## Other Featueres
 If you need to delete an account or change login credential the program will ask you to type the password to make sure it is you.
