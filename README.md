@@ -30,7 +30,33 @@ This program uses AES to encrypt every stored password.
 * Infos
 
 ### Show Accounts List
-asad
+This function shows all accounts credentials but password is replaced with ********.
+
+### Show Accounts List and copy password to clipboard
+This function shows all the accounts without the password.   
+You can copy 1 password to clipboard.
+
+### Show Accounts List with Credential
+This function shows all the accounts with all the credentials
+
+### Add Account
+You can add a new account.
+
+### Modify account
+You can edit an account (just 1 at the time).
+You can just modify user, email and password.
+
+### Delete Account
+You can delete an account (just 1 at the time).
+
+### Change Login Username
+You can change the login password.
+
+### Change Login Password
+You can change the login password.
+
+### Infos
+Shows creator infos.
 
 ## Other Featueres
 If you need to delete an account or change login credential the program will ask you to type the password to make sure it is you.
