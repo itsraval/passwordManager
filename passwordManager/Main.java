@@ -8,16 +8,23 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
+/**
+ * This is the main class
+ * 
+ * @author  Ravizzotti Alessandro
+ * @version 1.0
+ * @since   06-11-2020 
+ */
 public class Main {
-
-    final static public String filePath = "C:\\Prog_JAVA\\src\\passwordManager\\passwordManager.txt";
+    final static public String filePath = "C:\\passwordManager\\accountsPasswordManger.txt";
     final static Scanner scan = new Scanner(System.in);
     static LocalDateTime maxTime;
     static ArrayList<Account> cText = new ArrayList<Account>();
 
+    /**
+     * Print the title
+     */
     public static void title() {
-        // PRINTS the main title of the program
         System.out.println("\n\n");
         System.out.println("========================================================================================");
         System.out.println("========================================================================================");
@@ -38,6 +45,10 @@ public class Main {
         System.out.println("========================================================================================\n\n");
     }
 
+    /**
+     * It asks to insert the password because admin required
+     * @param log used to check the password
+     */
     public static void mustCheckPassword(Login log) {
         int j = 0;
         String password = "";
@@ -53,13 +64,14 @@ public class Main {
         }
     }
 
+    /**
+     * It asks to insert the password because 5 minutes have passed
+     * @param log used to check the password
+     */
     public static void inTime(Login log) {
-        // check if the event is onTime
-        // if the event is not in time the caller function has to ask the password
         LocalDateTime nowTime = LocalDateTime.now();
         int i = nowTime.compareTo(maxTime);
-        if (i < 0)
-            return;
+        if (i < 0) return;
         else {
             int j = 0;
             String password = "";
@@ -77,18 +89,27 @@ public class Main {
         }
     }
 
+    /**
+     * Shows the account list without the password
+     */
     public static void showAccountList() {
         for (Account account : cText) {
             System.out.println(account.printCipher());  
         }
     }
 
+    /**
+     * Shows the account list
+     */
     public static void showAccountCredential() {
         for (Account account : cText) {
             System.out.println(account);  
         }
     }
 
+    /**
+     * You can add an account to the @param accountFile
+     */
     public static void addAccount(File accountFile) {
         System.out.println("--Add New Account-- (just press enter if you do not want to compile the line)");
         System.out.print("Site: ");
@@ -113,21 +134,16 @@ public class Main {
             System.out.print("Password: ");
             password= scan.nextLine();
         }    
-
         if (site.equals("")) site = "!";
         if (url.equals("")) url = "!";
         if (user.equals("")) user = "!";
         if (email.equals("")) email = "!";
         if (password.equals("")) password = "!";
-
         site = site.replace(' ', '§');
         url = url.replace(' ', '§');
         user = user.replace(' ', '§');
-
         password = AES.encrypt(password);
-
         Account a = new Account(site, url, user, email, password);
-
         cText.add(a);
         try {
             FileWriter fWriter = new FileWriter(accountFile, true);
@@ -140,17 +156,18 @@ public class Main {
         }
     }
 
+    /**
+     * You can modify an account on the @param accountFile
+     * @param log required to complete the action
+     */
     public static void modifyAccount(File accountFile, Login log) {
         for (Account account : cText) {
             System.out.println(cText.indexOf(account) + " " + account);  
         }
-
         System.out.print("Account number to edit: ");
         int i = scan.nextInt();
         scan.nextLine();
-
         System.out.println(cText.get(i).showSiteUrl());
-
         System.out.print("User: ");
         String user = scan.nextLine();
         System.out.print("Email: ");
@@ -169,43 +186,43 @@ public class Main {
             System.out.print("Password: ");
             password= scan.nextLine();
         }    
-
         if (user.equals("")) user = "!";
         if (email.equals("")) email = "!";
         if (password.equals("")) password = "!";
-
         user = user.replace(' ', '§');
-
         password = AES.encrypt(password);
-
         cText.get(i).edit(user, email, password);
         log.accountModify(accountFile, cText);
-
     }
 
+    /**
+     * Delete an account from the @param accountFile
+     * @param log required to complete the action
+     */
     public static void deleteAccount(File accountFile, Login log) {
         for (Account account : cText) {
             System.out.println(cText.indexOf(account) + " " + account);  
         }
-
         System.out.print("Account number to delete: ");
         int i = scan.nextInt();
         scan.nextLine();
-
         cText.remove(i);
         log.accountModify(accountFile, cText);
-
     }
 
+    /**
+     * PRINTS about infos
+     */
     public static void infos() {
-        // PRINTS about infos
         System.out.println("\nThis program is made by Alessandro Ravizzoti.");
         System.out.println("Copyright © 2020.");
     }
 
+    /**
+     * Used in menu
+     * You can go back to the menu or exit the program correctly
+     */
     private static void exitOrMenu() {
-        // used only in mene
-        // the user can choose if go back to the menu or exit the program
         System.out.print("\n\nPress 'b' to go back to the menu or press 'e' to exit... ");
         char c = 'a';
         while (c != 'b' && c != 'e') {
@@ -219,8 +236,12 @@ public class Main {
         }
     }
 
+    /**
+     * Main menu
+     * @param log required to complete the action
+     * @param accountFile required to complete the action
+     */
     public static void menu(Login log, File accountFile) {
-        // standard menu
         System.out.println("1 - Show Accounts List");
         System.out.println("2 - Show Accounts List with Credential");
         System.out.println("3 - Add Account");
@@ -231,15 +252,12 @@ public class Main {
         System.out.println("8 - Infos");
         System.out.println("9 - Exit\n");
         System.out.print("Insert number: ");
-
         try {
             int i = scan.nextInt();
             while (i < 1 || i > 9)
                 i = scan.nextInt();
-
             scan.nextLine();
             System.out.print("\n\n");
-
             switch (i) {
                 case 1:
                     inTime(log);
@@ -292,7 +310,6 @@ public class Main {
                     scan.close();
                     System.exit(0);
                     break;
-
                 default:
                     break;
             }
@@ -306,20 +323,19 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        
         title();
-
         try {
-            File accountFile = new File(filePath);
-            if (accountFile.createNewFile()) {
+            File accountFile = new File(filePath);  
+            if (!accountFile.exists()) {
+                if (!accountFile.getParentFile().exists()) accountFile.getParentFile().mkdir();
+                accountFile.createNewFile();
+                Features.createReadme();
                 System.out.println("File created: " + accountFile.getName() + " successfully!");
                 Login.firstLogin(scan, accountFile);
             }
-
             Scanner fileScan = new Scanner(accountFile);
             String cUser = fileScan.nextLine();
             String cPassword = fileScan.nextLine();
-
             while (fileScan.hasNextLine()) {
                 String line = fileScan.nextLine();
                 if (!line.equals("")) {
@@ -332,7 +348,6 @@ public class Main {
             Login log = Login.loginScreen(0, scan, cUser, cPassword);
             maxTime = LocalDateTime.now().plusMinutes(5);
             menu(log, accountFile);
-
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();

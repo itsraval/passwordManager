@@ -1,5 +1,12 @@
 package src.passwordManager;
 
+/**
+ * Account
+ * 
+ * @author  Ravizzotti Alessandro
+ * @version 1.0
+ * @since   06-11-2020 
+ */
 public class Account {
     private final String site;
     private final String url;
@@ -7,6 +14,14 @@ public class Account {
     private String email;
     private String password;
 
+    /**
+     * Set the accounts
+     * @param site = site name
+     * @param url = url of the web site
+     * @param user = username used in the web site
+     * @param email = email used in the web site
+     * @param password = password used in the web site
+     */
     Account (String site, String url, String user, String email, String password){
         this.site = site;
         this.url = url;
@@ -15,20 +30,36 @@ public class Account {
         this.password = password;
     }
 
+    /**
+     * @return Formatted string showing this site and this url.
+     */
     public String showSiteUrl (){
         return this.site + "\t" + this.url;
     } 
 
+    /**
+     * MODIFY this with the inputs.
+     * @param user change this user 
+     * @param email change this email
+     * @param password change this password
+     * 
+     */
     public void edit (String user, String email, String password){
         this.user = user;
         this.email = email;
         this.password = password;
     }
 
+    /**
+     * @return Formatted string showing all the account parameters
+     */
     public String printTextFormat(){
         return site + " " + url + " " + user + " " + email + " " + password + "\n\n";
     }
 
+    /**
+     * @return Formatted string showing all the account parameters without password (instead of password shows ********)
+     */
     public String printCipher(){
         String s = site.replace('§', ' ');
         String ur = url.replace('§', ' ');
@@ -55,5 +86,4 @@ public class Account {
         if (!ps.equals("!")) text = text + "password:\t" + ps + "\n";
         return text;
     }
-    
 }
