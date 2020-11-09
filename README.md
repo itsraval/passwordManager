@@ -9,7 +9,7 @@ An account is made by
 * email
 * password
 
-or just by some of them. 
+or just by some of them.  
 All data will only be saved on local store in "C:\passwordManager"
 
 # Cryptography
