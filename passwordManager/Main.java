@@ -153,9 +153,9 @@ public class Main {
         if (user.equals("")) user = "!";
         if (email.equals("")) email = "!";
         if (password.equals("")) password = "!";
-        site = site.replace(' ', '§');
-        url = url.replace(' ', '§');
-        user = user.replace(' ', '§');
+        site = site.replace(' ', '~');
+        url = url.replace(' ', '~');
+        user = user.replace(' ', '~');
         password = AES.encrypt(password);
         Account a = new Account(site, url, user, email, password);
         cText.add(a);
@@ -203,7 +203,7 @@ public class Main {
         if (user.equals("")) user = "!";
         if (email.equals("")) email = "!";
         if (password.equals("")) password = "!";
-        user = user.replace(' ', '§');
+        user = user.replace(' ', '~');
         password = AES.encrypt(password);
         cText.get(i).edit(user, email, password);
         log.accountModify(accountFile, cText);

@@ -34,8 +34,8 @@ public class Account {
      * @return Formatted string showing this site and this url.
      */
     public String showSiteUrl (){
-        String s = site.replace('§', ' ');
-        String ur = url.replace('§', ' ');
+        String s = site.replace('~', ' ');
+        String ur = url.replace('~', ' ');
         String text = s + "\t";
         if (!ur.equals("!")) text = text + ur;
         return text;
@@ -45,9 +45,9 @@ public class Account {
      * @return Formatted string showing this site and this url.
      */
     public String showSiteUrlUserEmail (){
-        String s = site.replace('§', ' ');
-        String ur = url.replace('§', ' ');
-        String us = user.replace('§', ' ');
+        String s = site.replace('~', ' ');
+        String ur = url.replace('~', ' ');
+        String us = user.replace('~', ' ');
         String text = "|-- " + s + "\n";
         if (!ur.equals("!")) text = text + "url:\t\t" + ur + "\n";
         if (!us.equals("!")) text = text + "user:\t\t" + us + "\n";    
@@ -79,9 +79,9 @@ public class Account {
      * @return Formatted string showing all the account parameters without password (instead of password shows ********)
      */
     public String printCipher(){
-        String s = site.replace('§', ' ');
-        String ur = url.replace('§', ' ');
-        String us = user.replace('§', ' ');
+        String s = site.replace('~', ' ');
+        String ur = url.replace('~', ' ');
+        String us = user.replace('~', ' ');
         String text = "|-- " + s + "\n";
         if (!ur.equals("!")) text = text + "url:\t\t" + ur + "\n";
         if (!us.equals("!")) text = text + "user:\t\t" + us + "\n";    
@@ -99,9 +99,9 @@ public class Account {
     
     @Override
     public String toString() {
-        String s = site.replace('§', ' ');
-        String ur = url.replace('§', ' ');
-        String us = user.replace('§', ' ');
+        String s = site.replace('~', ' ');
+        String ur = url.replace('~', ' ');
+        String us = user.replace('~', ' ');
         String text = "|-- " + s + "\n";
         String ps = AES.decrypt(password);
         
