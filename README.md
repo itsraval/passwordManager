@@ -82,7 +82,13 @@ hash login password
 
 Site Url User Email EncryptedPassword
 
-The account are sorted by the Site name
+The accounts are sorted by the Site name.  
+Any space present in 
+* site name
+* url
+* user
+* email  
+will be replaced with ~ (online in the file, in the app it will shown correctly)
 
 ## Imported Libraries
 * java.io.File;
