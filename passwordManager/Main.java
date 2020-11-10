@@ -1,5 +1,6 @@
 package src.passwordManager;
 
+import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -19,6 +20,8 @@ public class Main {
     final static Scanner scan = new Scanner(System.in);
     static LocalDateTime maxTime;
     static ArrayList<Account> cText = new ArrayList<Account>();
+    static Console console = System.console(); 
+    
 
     /**
      * Print the title
@@ -53,7 +56,7 @@ public class Main {
         String password = "";
         while (!log.checkPassword(password)){
             System.out.print("Password required: ");
-            password = scan.nextLine();
+            password = new String(console.readPassword(""));
             System.out.println("\n");
             if (j > 4) {
                 scan.close();
@@ -76,7 +79,7 @@ public class Main {
             String password = "";
             while (!log.checkPassword(password)) {
                 System.out.print("Insert Login Password (Time expired): ");
-                password = scan.nextLine();
+                password = new String(console.readPassword(""));
                 System.out.println("\n");
                 if (j > 4) {
                     scan.close();
@@ -310,7 +313,7 @@ public class Main {
                     break;
                 case 7:
                     mustCheckPassword(log);
-                    log.changeLoginPassword(scan, accountFile, cText);
+                    log.changeLoginPassword(scan, accountFile, cText, console);
                     exitOrMenu();
                     menu(log, accountFile);
                     break;
@@ -344,7 +347,7 @@ public class Main {
                 accountFile.createNewFile();
                 Features.createReadme();
                 System.out.println("File created: " + accountFile.getName() + " successfully!");
-                Login.firstLogin(scan, accountFile);
+                Login.firstLogin(scan, accountFile, console);
             }
             Scanner fileScan = new Scanner(accountFile);
             String cUser = fileScan.nextLine();
@@ -358,7 +361,7 @@ public class Main {
             }
             fileScan.close();
 
-            Login log = Login.loginScreen(0, scan, cUser, cPassword);
+            Login log = Login.loginScreen(0, scan, cUser, cPassword, console);
             maxTime = LocalDateTime.now().plusMinutes(5);
             menu(log, accountFile);
         } catch (IOException e) {

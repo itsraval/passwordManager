@@ -1,5 +1,6 @@
 package src.passwordManager;
 
+import java.io.Console;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -61,16 +62,17 @@ public class Login {
      * @param scan to the input
      * @param accountFile account file
      * @param cText accounts list
+     * @param console = console used to read password
      */
-    public void changeLoginPassword(Scanner scan, File accountFile, ArrayList<Account> cText) {
+    public void changeLoginPassword(Scanner scan, File accountFile, ArrayList<Account> cText, Console console) {
         System.out.println("Updating Login Password: ");
         String password;
         String password2;
         do {
             System.out.print("New Password (better with 8 or more characters, use numbers and symbol): ");
-            password = scan.nextLine();
+            password = new String(console.readPassword(""));
             System.out.print("Retype your new password: ");
-            password2 = scan.nextLine();
+            password2 = new String(console.readPassword(""));
         } while (!(password.equals(password2)));
         this.password = Cipher.SHA256(password);
 
@@ -161,8 +163,9 @@ public class Login {
      * First Login screen if there is no file this has to be called in main.
      * @param scan takes input
      * @param accountFile accounts file
+     * @param console = console used to read password
      */
-    public static void firstLogin(Scanner scan, File accountFile){
+    public static void firstLogin(Scanner scan, File accountFile, Console console){
         System.out.println("Creating Login Credentials: ");
         System.out.print("Username: ");
         String user = scan.nextLine();
@@ -170,9 +173,9 @@ public class Login {
         String password2;
         do {
             System.out.print("Password (better with 8 or more characters, use numbers and symbol): ");
-            password = scan.nextLine();
+            password = new String(console.readPassword(""));
             System.out.print("Retype your password: ");
-            password2 = scan.nextLine();
+            password2 = new String(console.readPassword(""));
         }while (!(password.equals(password2)));
         try {
             FileWriter fWriter = new FileWriter(accountFile);
@@ -191,9 +194,10 @@ public class Login {
      * @param scan takes input
      * @param cUser used to make new Login
      * @param cPassword used to make new Login
+     * @param console = console used to read password
      * @return the new Login.
      */
-    public static Login loginScreen(int i, Scanner scan, String cUser, String cPassword){
+    public static Login loginScreen(int i, Scanner scan, String cUser, String cPassword, Console console){
         if (i == 5) {
             scan.close();
             System.exit(0);
@@ -203,10 +207,10 @@ public class Login {
         System.out.print("Username: ");
         String user = scan.nextLine();
         System.out.print("Password: ");
-        String password = scan.nextLine();
+        String password = new String(console.readPassword(""));
         System.out.println("\n");
         Login log = new Login(user, password);
-        if (log.check(cUser, cPassword) == false) loginScreen(i+1, scan, cUser, cPassword);
+        if (log.check(cUser, cPassword) == false) loginScreen(i+1, scan, cUser, cPassword, console);
         else   {
             System.out.println("Login Success.\n\n");
         }
