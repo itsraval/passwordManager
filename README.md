@@ -96,6 +96,7 @@ will be replaced with ~ (online in the file, in the app it will shown correctly)
 * java.io.IOException;
 * java.time.LocalDateTime;
 * java.util.ArrayList;
+* java.util.Collections;
 * java.util.InputMismatchException;
 * java.util.Scanner;
 * java.math.BigInteger;
