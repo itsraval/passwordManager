@@ -1,7 +1,6 @@
 package src.passwordManager;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -124,7 +123,7 @@ public class Main {
     /**
      * You can add an account to the @param accountFile
      */
-    public static void addAccount(File accountFile) {
+    public static void addAccount(File accountFile, Login log) {
         System.out.println("--Add New Account-- (just press enter if you do not want to compile the line)");
         System.out.print("Site: ");
         String site = scan.nextLine();
@@ -159,15 +158,7 @@ public class Main {
         password = AES.encrypt(password);
         Account a = new Account(site, url, user, email, password);
         cText.add(a);
-        try {
-            FileWriter fWriter = new FileWriter(accountFile, true);
-            fWriter.write(a.printTextFormat());
-            fWriter.close();
-            System.out.println("Account added successfully!");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
+        log.accountAddSorted(accountFile, cText);
     }
 
     /**
@@ -270,7 +261,7 @@ public class Main {
         System.out.print("Insert number: ");
         try {
             int i = scan.nextInt();
-            while (i < 1 || i > 9)
+            while (i < 0 || i > 9)
                 i = scan.nextInt();
             scan.nextLine();
             System.out.print("\n\n");
@@ -295,7 +286,7 @@ public class Main {
                     break;
                 case 3:
                     inTime(log);
-                    addAccount(accountFile);
+                    addAccount(accountFile, log);
                     exitOrMenu();
                     menu(log, accountFile);
                     break;

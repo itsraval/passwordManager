@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -105,6 +106,29 @@ public class Login {
             fWriter.write(text);
             fWriter.close();
             System.out.println("Update successful!");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        } 
+    }
+
+    /**
+     * Sort the account arraylist
+     * @param accountFile account file
+     * @param cText accounts list
+     */
+    public void accountAddSorted (File accountFile, ArrayList<Account> cText) {
+        String text = Cipher.SHA256(this.user) + "\n";
+        text = text + this.password + "\n\n";
+        Collections.sort(cText);
+        for (Account account : cText) {
+            text = text + account.printTextFormat();
+        }
+        try {
+            FileWriter fWriter = new FileWriter(accountFile);
+            fWriter.write(text);
+            fWriter.close();
+            System.out.println("Account added successfully!");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();

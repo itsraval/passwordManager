@@ -7,7 +7,7 @@ package src.passwordManager;
  * @version 1.0
  * @since   06-11-2020 
  */
-public class Account {
+public class Account implements Comparable<Account>{
     private final String site;
     private final String url;
     private String user;
@@ -28,6 +28,12 @@ public class Account {
         this.user = user;
         this.email = email;
         this.password = password;
+    }
+
+    @Override
+    public int compareTo(Account a) {
+        return this.site.compareTo(a.site);
+        //Collections.sort(ar);
     }
 
     /**
