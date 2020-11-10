@@ -77,8 +77,8 @@ The package of the java files is "src.passwordManager".
 If you do not want to save the storage account files in "C:\passwordManager" you can change it at line 19 of the Main class. (and at line 69 of the Features class because you need to change the path for the README.txt file too, to prevent error).
 
 ### File Format
-hash login user
-hash login password
+hash login user   
+hash login password   
 
 Site Url User Email EncryptedPassword
 
