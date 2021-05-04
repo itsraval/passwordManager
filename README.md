@@ -90,6 +90,9 @@ Any space present in
 * email  
 will be replaced with ~ (online in the file, in the app it will shown correctly)
 
+## ATTENTION
+DO NOT change the login credentials. There is a bug when you change them you wont be able to access all your encrypted data. :( Sorry
+
 ## Imported Libraries
 * java.awt.datatransfer.Clipboard;
 * java.awt.datatransfer.StringSelection;
